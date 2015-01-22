@@ -4,6 +4,8 @@ angular.module('segmentio', ['ng'])
             var service = {};
 
             $window.analytics = $window.analytics || [];
+            $window.analytics.SNIPPET_VERSION = '3.0.1';
+
 
             // Define a factory that generates wrapper methods to push arrays of
             // arguments onto our `analytics` queue, where the first element of the arrays
