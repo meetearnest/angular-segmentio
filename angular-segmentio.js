@@ -4,6 +4,12 @@ angular.module('segmentio', ['ng'])
             var service = {};
 
             $window.analytics = $window.analytics || [];
+            // NOTE(daniel): Setting this property is required in order to prevent Segment's script
+            // from automatically emitting a pageview event.
+            // See https://groups.google.com/a/meetearnest.com/forum/#!searchin/engineering/how$20do$20i$20set/engineering/QcKibF6I-Qs/AU53VeUZfqgJ
+            // for more information.
+            $window.analytics.SNIPPET_VERSION = '3.0.1';
+
 
             // Define a factory that generates wrapper methods to push arrays of
             // arguments onto our `analytics` queue, where the first element of the arrays
@@ -41,7 +47,7 @@ angular.module('segmentio', ['ng'])
                 script.type = 'text/javascript';
                 script.async = true;
                 script.src = ('https:' === document.location.protocol ? 'https://' : 'http://') +
-                    'd2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/' + apiKey + '/analytics.js';
+                    'cdn.segment.com/analytics.js/v1/' + apiKey + '/analytics.min.js';
 
                 // Find the first script element on the page and insert our script next to it.
                 var firstScript = document.getElementsByTagName('script')[0];
