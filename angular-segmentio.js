@@ -4,6 +4,10 @@ angular.module('segmentio', ['ng'])
             var service = {};
 
             $window.analytics = $window.analytics || [];
+            // NOTE(daniel): Setting this property is required in order to prevent Segment's script
+            // from automatically emitting a pageview event.
+            // See https://groups.google.com/a/meetearnest.com/forum/#!searchin/engineering/how$20do$20i$20set/engineering/QcKibF6I-Qs/AU53VeUZfqgJ
+            // for more information.
             $window.analytics.SNIPPET_VERSION = '3.0.1';
 
 
